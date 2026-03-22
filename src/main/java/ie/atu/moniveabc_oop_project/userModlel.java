@@ -6,11 +6,14 @@ public class userModlel {
     private String email;
     private String password;
 
-    public userModel(String firstName, String lastName, String email, String password) {
+    public void userModel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+    }
+
+    public userModlel(String firstName, String lastName, String email, String password) {
     }
 
     public String getFirstName() {
