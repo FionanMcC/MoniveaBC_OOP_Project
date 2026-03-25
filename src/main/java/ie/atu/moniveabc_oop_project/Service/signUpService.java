@@ -11,8 +11,11 @@ import java.util.List;
 public class signUpService {
 
     private List<userModlel> users = new ArrayList<>();
+    private long nextId = 1;
 
     public String registerUser(userModlel user) {
+
+        user.setUserId(nextId++);
 
         users.add(user);
 
@@ -22,6 +25,7 @@ public class signUpService {
     public List<userModlel> getUsers() {
         return users;
         }
+
 
 }
 

@@ -12,6 +12,7 @@ public class userModlel {
     @Email(message="Invalid email")
     private String email;
     private String password;
+    private Long id;
 
     public userModlel() {}
 
@@ -31,12 +32,17 @@ public class userModlel {
         return lastName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getEmail() { return email;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUserId(Long id){
+
+        this.id=id;
+
     }
 
     @Override
