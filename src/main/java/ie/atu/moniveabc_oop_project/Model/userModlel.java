@@ -42,4 +42,5 @@ public class userModlel {
     public String toString() {
         return "User Registered: " + firstName + " " + lastName + " (" + email + ")";
     }
+
 }
