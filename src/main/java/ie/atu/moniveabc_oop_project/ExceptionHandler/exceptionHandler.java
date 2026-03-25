@@ -1,22 +1,18 @@
 package ie.atu.moniveabc_oop_project.ExceptionHandler;
 
+import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
 public class exceptionHandler {
 
-    // Handle user registration exceptions
-    public static void handleRegistration(Runnable registrationLogic) {
-        try {
-            registrationLogic.run();  // Execute the registration code
-        } catch (Exception e) {
-            System.out.println("Unexpected error: " + e.getMessage());
-        }
-    }
+@ExceptionHandler(value={MethodArgumentNotValidException.class})
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
+    return ResponseEntity.badRequest().body("there was an error validating the request");
 
-    // Handle generic exceptions
-    public static void handleGeneric(Runnable logic) {
-        try {
-            logic.run();
-        } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+
     }
 }
