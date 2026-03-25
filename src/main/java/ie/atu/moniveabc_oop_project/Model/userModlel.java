@@ -22,6 +22,7 @@ public class userModlel {
         this.password = password;
     }
 
+
     public String getFirstName() {
         return firstName;
     }
