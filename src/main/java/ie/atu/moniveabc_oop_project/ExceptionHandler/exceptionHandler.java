@@ -6,7 +6,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.validation.FieldError;
 
 
@@ -16,29 +16,24 @@ import java.util.Map;
 @RestControllerAdvice
 public class exceptionHandler {
 
-@ExceptionHandler(value={MethodArgumentNotValidException.class})
-    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
-    return ResponseEntity.badRequest().body("there was an error validating the request");
+    @ExceptionHandler(value = {MethodArgumentNotValidException.class})
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        return ResponseEntity.badRequest().body("there was an error validating the request");
 
 
     }
 
-@ExceptionHandler(MethodArgumentNotValidException.class)
-public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException ex) {
 
-    Map<String, String> errors = new HashMap<>();
+    @ExceptionHandler(MemberNotFoundException.class)
+    public ResponseEntity<String> handleMemeberNotFound(MemberNotFoundException ex) {
 
-    for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
-        errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-}
+    @ExceptionHandler(MemberAlreadyExistsException.class)
+    public ResponseEntity<String> handleMemberAlreadyExists(MemberAlreadyExistsException ex) {
 
-@ExceptionHandler(MemberNotFoundException.class)
-    public ResponseEntity<String> handleMemeberNotFound(MemberNotFoundException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.CONFLICT);
 
-    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-}
-
+    }
 }
