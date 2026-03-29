@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/members")
 public class Controller {
 
     private final SignUpService signUpService;
@@ -25,13 +25,13 @@ public class Controller {
 
 
     @PostMapping("/register")
-    public String registerUser(@Valid @RequestBody userModlel user) {
+    public String registerMember(@Valid @RequestBody userModlel member) {
 
-        return signUpService.registerUser(user);
+        return signUpService.registerMember(member);
     }
 
     @GetMapping
-    public List<userModlel> displayUsers() {
+    public List<userModlel> displayMembers() {
         return signUpService.getUsers();
     }
 

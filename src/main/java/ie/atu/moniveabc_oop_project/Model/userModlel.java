@@ -35,8 +35,12 @@ public class userModlel {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -63,5 +67,7 @@ public class userModlel {
     public String toString() {
         return "User Registered: " + firstName + " " + lastName + " (" + email + ")";
     }
+
+
 
 }
