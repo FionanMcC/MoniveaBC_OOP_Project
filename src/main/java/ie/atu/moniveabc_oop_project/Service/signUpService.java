@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Service
-public class SignUpService {
+public class signUpService {
 
     private List<userModlel> users = new ArrayList<>();
     private long nextId = 1;
