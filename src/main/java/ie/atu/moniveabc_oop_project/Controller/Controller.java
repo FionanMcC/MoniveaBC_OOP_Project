@@ -2,7 +2,7 @@ package ie.atu.moniveabc_oop_project.Controller;
 
 import ie.atu.moniveabc_oop_project.Model.userModlel;
 
-import ie.atu.moniveabc_oop_project.Service.SignUpService;
+import ie.atu.moniveabc_oop_project.Service.signUpService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,16 +17,15 @@ import java.util.List;
 @RequestMapping("/users")
 public class Controller {
 
-    private final SignUpService signUpService;
+    private final signUpService signUpService;
 
-    public Controller(SignUpService signUpService) {
+    public Controller(signUpService signUpService) {
         this.signUpService = signUpService;
     }
 
 
     @PostMapping("/register")
     public String registerUser(@Valid @RequestBody userModlel user) {
-
         return signUpService.registerUser(user);
     }
 
