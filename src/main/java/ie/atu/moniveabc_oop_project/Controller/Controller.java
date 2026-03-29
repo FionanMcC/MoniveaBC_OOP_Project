@@ -26,13 +26,12 @@ public class Controller {
 
     @PostMapping("/register")
     public String registerMember(@Valid @RequestBody userModlel member) {
-
-        return signUpService.registerMember(member);
+        return signUpService.registerUser(member);
     }
 
     @GetMapping
     public List<userModlel> displayMembers() {
-        return signUpService.getUsers();
+        return signUpService.getUser();
     }
 
 }

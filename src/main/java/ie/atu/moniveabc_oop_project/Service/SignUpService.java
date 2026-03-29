@@ -20,7 +20,7 @@ public class SignUpService {
 
     }
 
-    public Object registeMember(userModlel member) {
+    public userModlel registeUser(userModlel member) {
 
         members = memberRepo.findAll();
 
@@ -33,11 +33,11 @@ public class SignUpService {
         memberRepo.save(member);
 
 
-        return ("Account created successfully!") + member;
+        return member;
 
     }
 
-    public List<userModlel> getMembers() {
+    public List<userModlel> getUser() {
         return memberRepo.findAll();
     }
 
