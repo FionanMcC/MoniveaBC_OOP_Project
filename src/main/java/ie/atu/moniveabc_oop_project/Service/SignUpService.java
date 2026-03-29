@@ -20,7 +20,7 @@ public class SignUpService {
 
     }
 
-    public userModlel registeUser(userModlel member) {
+    public String registerUser(userModlel member) {
 
         members = memberRepo.findAll();
 
@@ -33,7 +33,7 @@ public class SignUpService {
         memberRepo.save(member);
 
 
-        return member;
+        return "Sign up successful" + member.getId().toString();
 
     }
 
