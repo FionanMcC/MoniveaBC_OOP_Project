@@ -1,7 +1,16 @@
 package ie.atu.moniveabc_oop_project.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.NoArgsConstructor;
+
 
 
 public class userModlel {
@@ -12,6 +21,10 @@ public class userModlel {
     @Email(message="Invalid email")
     private String email;
     private String password;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     public userModlel() {}
@@ -21,8 +34,12 @@ public class userModlel {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+
     }
 
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -38,15 +55,12 @@ public class userModlel {
         return password;
     }
 
-    public void setUserId(Long id){
-
-        this.id=id;
-
-    }
 
     @Override
     public String toString() {
         return "User Registered: " + firstName + " " + lastName + " (" + email + ")";
     }
+
+
 
 }

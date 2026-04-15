@@ -30,7 +30,7 @@ public class Controller {
     }
 
     @GetMapping
-    public List<userModlel> displayUsers() {
+    public List<userModlel> displayMembers() {
         return signUpService.getUser();
     }
 

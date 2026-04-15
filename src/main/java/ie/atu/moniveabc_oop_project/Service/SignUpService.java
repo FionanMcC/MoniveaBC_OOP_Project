@@ -1,29 +1,51 @@
 package ie.atu.moniveabc_oop_project.Service;
 
+import ie.atu.moniveabc_oop_project.ExceptionHandler.MemberAlreadyExistsException;
+import ie.atu.moniveabc_oop_project.ExceptionHandler.MemberNotFoundException;
 import ie.atu.moniveabc_oop_project.Model.userModlel;
+import ie.atu.moniveabc_oop_project.repositiory.MemberRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 
 @Service
 public class SignUpService {
 
+
     private List<userModlel> members;
     private final MemberRepo memberRepo;
 
-    public String SignUpService(MemberRepo membersRepo) {
+    public SignUpService(MemberRepo memberRepo) {
         this.memberRepo = memberRepo;
 
     }
 
     public String registerUser(userModlel member) {
+
         members = memberRepo.findAll();
-    }
+
     for(userModlel currentMember:members){
-        if (currentMember.getEmail().equals(member.getEmail())) {
-            throw new MemberAlreadyExistsException("Members with this email already exists");
+        if(currentMember.getEmail().equals(member.getEmail())){
+            throw new MemberAlreadyExistsException("Member with this email already exists");
+        }
+    }
+
+        memberRepo.save(member);
+
+
+        return "Sign up successful";
+
+    }
+
+    public List<userModlel> getUser() {
+        return memberRepo.findAll();
+    }
+
+    public userModlel getById(Long id) {
+
+          return memberRepo.findById(id).orElseThrow(()-> new MemberNotFoundException("Member" +id+" not found"));
         }
     }
 
@@ -31,8 +53,8 @@ public class SignUpService {
 
     return"Sign up successful";
 
+    }
 
-}
 
 public List<userModlel> getUser() {
     return memberRepo.findAll();
