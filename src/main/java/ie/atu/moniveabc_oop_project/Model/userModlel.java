@@ -13,20 +13,13 @@ import lombok.NoArgsConstructor;
 
 
 
-
-
-
-@NoArgsConstructor
-@Entity
 public class userModlel {
     @NotBlank(message = "First name is required")
     private String firstName;
     @NotBlank(message = "Last name is required")
     private String lastName;
     @Email(message="Invalid email")
-    @NotBlank(message = "Email is required")
     private String email;
-
     private String password;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -34,7 +27,7 @@ public class userModlel {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-
+    public userModlel() {}
 
     public userModlel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
@@ -56,8 +49,7 @@ public class userModlel {
         return lastName;
     }
 
-    public String getEmail() { return email;
-    }
+    public String getEmail() { return email; }
 
     public String getPassword() {
         return password;

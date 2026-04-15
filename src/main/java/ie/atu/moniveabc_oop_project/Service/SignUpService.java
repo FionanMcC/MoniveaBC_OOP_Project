@@ -47,7 +47,22 @@ public class SignUpService {
 
           return memberRepo.findById(id).orElseThrow(()-> new MemberNotFoundException("Member" +id+" not found"));
         }
+    }
+
+    memberRepo.save(member);
+
+    return"Sign up successful";
 
     }
 
+
+public List<userModlel> getUser() {
+    return memberRepo.findAll();
+}
+
+public userModlel getById(Long id) {
+    return memberRepo.finalById(id).orElseThrow(() -> new MemberNotFoundException("Member" + id + "not found"));
+
+    }
+}
 
