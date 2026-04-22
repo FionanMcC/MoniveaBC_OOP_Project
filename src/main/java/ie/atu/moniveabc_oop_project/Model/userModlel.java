@@ -2,24 +2,28 @@ package ie.atu.moniveabc_oop_project.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Entity     //makes a database table
+@Setter
 
 public class userModlel {
+
     @NotBlank(message = "First name is required")
     private String firstName;
+
     @NotBlank(message = "Last name is required")
     private String lastName;
+
     @Email(message="Invalid email")
     private String email;
+
     private String password;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -27,6 +31,7 @@ public class userModlel {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    //Constructors
     public userModlel() {}
 
     public userModlel(String firstName, String lastName, String email, String password) {
@@ -34,7 +39,6 @@ public class userModlel {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-
     }
 
     public Long getId() {
@@ -54,6 +58,7 @@ public class userModlel {
     public String getPassword() {
         return password;
     }
+
 
 
     @Override
