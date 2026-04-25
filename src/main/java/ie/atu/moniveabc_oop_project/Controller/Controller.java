@@ -1,6 +1,6 @@
 package ie.atu.moniveabc_oop_project.Controller;
 
-import ie.atu.moniveabc_oop_project.Model.userModlel;
+import ie.atu.moniveabc_oop_project.Model.UserModel;
 
 import ie.atu.moniveabc_oop_project.Service.SignUpService;
 import jakarta.validation.Valid;
@@ -25,12 +25,12 @@ public class Controller {
 
 
     @PostMapping("/register")
-    public String registerMember(@Valid @RequestBody userModlel member) {
+    public String registerMember(@Valid @RequestBody UserModel member) {
         return signUpService.registerUser(member);
     }
 
     @GetMapping
-    public List<userModlel> displayMembers() {
+    public List<UserModel> displayMembers() {
         return signUpService.getUser();
     }
 

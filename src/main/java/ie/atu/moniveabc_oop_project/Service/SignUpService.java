@@ -2,8 +2,8 @@ package ie.atu.moniveabc_oop_project.Service;
 
 import ie.atu.moniveabc_oop_project.ExceptionHandler.MemberAlreadyExistsException;
 import ie.atu.moniveabc_oop_project.ExceptionHandler.MemberNotFoundException;
-import ie.atu.moniveabc_oop_project.Model.userModlel;
-import ie.atu.moniveabc_oop_project.repositiory.MemberRepo;
+import ie.atu.moniveabc_oop_project.Model.UserModel;
+import ie.atu.moniveabc_oop_project.repository.MemberRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,11 +18,11 @@ public class SignUpService {
         this.memberRepo = memberRepo;
     }
     // Register User
-    public String registerUser(userModlel member) {
+    public String registerUser(UserModel member) {
 
-        List<userModlel> members = memberRepo.findAll();
+        List<UserModel> members = memberRepo.findAll();
 
-        for (userModlel currentMember : members) {
+        for (UserModel currentMember : members) {
             if (currentMember.getEmail().equals(member.getEmail())) {
                 throw new MemberAlreadyExistsException("Member with this email already exists");
             }
@@ -33,21 +33,21 @@ public class SignUpService {
     }
 
     // GET ALL USERS
-    public List<userModlel> getUser() {
+    public List<UserModel> getUser() {
         return memberRepo.findAll();
     }
 
     // GET USER BY ID
-    public userModlel getById(Long id) {
+    public UserModel getById(Long id) {
         return memberRepo.findById(id)
                 .orElseThrow(() ->
                         new MemberNotFoundException("Member " + id + " not found"));
     }
 
     // Update User
-    public userModlel updateUser(Long id, userModlel updatedMember) {
+    public UserModel updateUser(Long id, UserModel updatedMember) {
 
-        userModlel existingMember = memberRepo.findById(id)
+        UserModel existingMember = memberRepo.findById(id)
                 .orElseThrow(() ->
                         new MemberNotFoundException("Member " + id + " not found"));
 

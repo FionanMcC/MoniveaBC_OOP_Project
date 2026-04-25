@@ -7,13 +7,12 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity     //makes a database table
 @Setter
 
-public class userModlel {
+public class UserModel {
 
     @NotBlank(message = "First name is required")
     private String firstName;
@@ -32,9 +31,9 @@ public class userModlel {
     private Long id;
 
     //Constructors
-    public userModlel() {}
+    public UserModel() {}
 
-    public userModlel(String firstName, String lastName, String email, String password) {
+    public UserModel(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
