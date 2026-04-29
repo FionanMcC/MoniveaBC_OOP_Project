@@ -14,6 +14,11 @@ import lombok.Setter;
 
 public class UserModel {
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private Long id;
+
     @NotBlank(message = "First name is required")
     private String firstName;
 
@@ -25,10 +30,8 @@ public class UserModel {
 
     private String password;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+
+
 
     //Constructors
     public UserModel() {}
