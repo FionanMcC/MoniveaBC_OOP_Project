@@ -4,11 +4,7 @@ import ie.atu.moniveabc_oop_project.Model.UserModel;
 
 import ie.atu.moniveabc_oop_project.Service.SignUpService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +29,20 @@ public class Controller {
     public List<UserModel> displayMembers() {
         return signUpService.getUser();
     }
+    @GetMapping("/{id}")
+    public UserModel getMember(@PathVariable Long id) {
+        return signUpService.getById(id);
+    }
 
+    @PutMapping("/{id}")
+    public UserModel updateMember(@PathVariable Long id,
+                                  @RequestBody UserModel member) {
+        return signUpService.updateUser(id, member);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteMember(@PathVariable Long id) {
+        signUpService.deleteUser(id);
+        return "Member deleted successfully";
+    }
 }
